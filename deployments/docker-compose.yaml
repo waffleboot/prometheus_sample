@@ -1,8 +1,24 @@
 version: "3.7"
 services:
-  service:
-    image: prometheus_sample/service
+  prometheus_sample_service:
+    image: prometheus_sample_service
     container_name: prometheus_sample_service
+    networks:
+      prometheus_sample:
     ports:
-      - 9000:8000
-      
+      - 127.0.0.1:9000:8000
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    networks:
+      prometheus_sample:
+    ports:
+      - 127.0.0.1:9090:9090
+    volumes:
+      - ../configs/prometheus.yml:/etc/prometheus/prometheus.yml
+
+networks:
+  prometheus_sample:
+
+  
