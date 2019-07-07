@@ -1,0 +1,8 @@
+version: "3.7"
+services:
+  service:
+    image: prometheus_sample/service
+    container_name: prometheus_sample_service
+    ports:
+      - 9000:8000
+      
